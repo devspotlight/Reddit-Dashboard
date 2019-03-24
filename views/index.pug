@@ -1,0 +1,68 @@
+doctype html
+html
+  head
+    meta(http-equiv='Content-type' content='text/html; charset=utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    link(rel='shortcut icon' href='https://www.herokucdn.com/favicon.ico' type='image/vnd.microsoft.icon')
+    if (!htmlWebpackPlugin.options.production)
+      script(src='http://localhost:35729/livereload.js')
+    for css in htmlWebpackPlugin.files.css
+      link(rel='stylesheet' type='text/css' href=css)
+    title #{htmlWebpackPlugin.options.title}
+  body(class=htmlWebpackPlugin.options.bodyClass)
+    header
+      nav
+        .logo
+        //-span.title #{htmlWebpackPlugin.options.title}
+        ul.nav-items
+          li.nav-link.architecture-link Architecture
+    .architecture
+      iframe.architecture-iframe(width='100%', height='500px', scrolling='no', seamless)
+    main
+      span.title Reddit Bot and Troll Dashboard
+      .container
+        .chart-container.table-stream
+          .chart-inputs
+            .chart-input(style={width: '50%'})
+              span Subreddit to monitor:
+              input(disabled='disabled' value='r/politics')
+            .chart-input(style={width: '30%'})
+            //-  span Display threshold:
+            //-  input#threshold(value='20' style={width: '3em'})
+            //-  | %
+            .chart-input(style={width: '20%'})
+              button#pause Pause
+          .data-table.loading
+            table
+              thead
+                tr
+                  th Time
+                  th Username
+                  th Comment
+                  th Behavior
+              tbody
+                //- real time data table rows start here!
+        .chart-container.stats-stream
+          //span.title Stats
+          //.stats-top3
+          //  //- TODO: Top trolls in the last day!
+          //  p Top trolls
+          //  ol#trolls
+          //    li
+          //    li
+          //    li
+          //.stats-top3
+          //  //- TODO: Top bots in the last day!
+          //  p Top bots
+          //  ol#bots
+          //    li
+          //    li
+          //    li
+          //.stats-trend.loading
+          //  //p Number of bots and trolls
+          //  //#trend-graph
+          //  //  //- real-time trend graph goes here!
+      footer.footer-legend Learn how we built this at 
+        a(href="http://hrku.co/reddit-dashboard-blog") blog.heroku.com
+    for js in htmlWebpackPlugin.files.js
+      script(src=js)
