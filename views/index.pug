@@ -23,15 +23,20 @@ html
       .container
         .chart-container.table-stream
           .chart-inputs
-            .chart-input(style={width: '50%'})
+            .chart-input(style={width: '35%'})
               span Subreddit to monitor:
               input(disabled='disabled' value='r/politics')
-            .chart-input(style={width: '30%'})
-            //-  span Display threshold:
-            //-  input#threshold(value='20' style={width: '3em'})
-            //-  | %
             .chart-input(style={width: '20%'})
-              button#pause Pause
+              button#pause Pause table
+            .chart-input(style={width: '15%'})
+              span#normal-ct ? 
+              span normal
+            .chart-input(style={width: '15%'})
+              span#bot-ct ? 
+              span bot
+            .chart-input(style={width: '15%'})
+              span#troll-ct ? 
+              span troll
           .data-table.loading
             table
               thead
@@ -42,26 +47,26 @@ html
                   th Behavior
               tbody
                 //- real time data table rows start here!
-        .chart-container.stats-stream
-          //span.title Stats
-          //.stats-top3
-          //  //- TODO: Top trolls in the last day!
-          //  p Top trolls
-          //  ol#trolls
-          //    li
-          //    li
-          //    li
-          //.stats-top3
-          //  //- TODO: Top bots in the last day!
-          //  p Top bots
-          //  ol#bots
-          //    li
-          //    li
-          //    li
-          //.stats-trend.loading
-          //  //p Number of bots and trolls
-          //  //#trend-graph
-          //  //  //- real-time trend graph goes here!
+        //.chart-container.stats-stream
+        //  span.title Stats
+        //  .stats-top3
+        //    //- TODO: Top trolls in the last day!
+        //    p Top trolls
+        //    ol#trolls
+        //      li
+        //      li
+        //      li
+        //  .stats-top3
+        //    //- TODO: Top bots in the last day!
+        //    p Top bots
+        //    ol#bots
+        //      li
+        //      li
+        //      li
+        //  .stats-trend.loading
+        //    //p Number of bots and trolls
+        //    //#trend-graph
+        //    //  //- real-time trend graph goes here!
       footer.footer-legend Learn how we built this at 
         a(href="http://hrku.co/reddit-dashboard-blog") blog.heroku.com
     for js in htmlWebpackPlugin.files.js

@@ -5,8 +5,6 @@ import '../styles/style.css'
 // TODO: Consider adding http://square.github.io/crossfilter/
 
 import DataTable from './lib/data-table'
-import TrendGraph from './lib/trend-graph'
-// import TopThree from './lib/top-three'
 
 import { MAX_SIZE } from '../consumer/constants'
 
@@ -32,10 +30,16 @@ architectureLink.addEventListener('click', () => {
  * Combines GUI elements into (coupled to ../../views/index.pug)
  */
 const aggregate = [
-  new DataTable('.data-table table tbody', '#threshold', MAX_SIZE, '#pause'),
-  new TrendGraph('#trend-graph', MAX_SIZE)
-  // new TopThree('#trolls', 'li', 'pos')
-  // new TopThree('#bots', 'li', 'neg')
+  new DataTable(
+    '.data-table table tbody',
+    '#threshold',
+    MAX_SIZE,
+    '#pause',
+    '#normal-ct',
+    '#bot-ct',
+    '#troll-ct'
+  )
+  // No more UI elements to aggregate for now...
 ]
 
 const url = `ws${window.location.href.match(/^http(s?:\/\/.*)\/.*$/)[1]}`

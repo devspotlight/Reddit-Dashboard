@@ -25,7 +25,7 @@ body {
   position: relative;
   font-family: Helvetica, Arial, sans-serif;
   overflow-y: hidden;
-  min-width: 1200px;
+  min-width: 1000px;
 }
 
 header {
@@ -209,8 +209,8 @@ main {
     }
 
     &.table-stream {
-      width: 70%;
-      padding-right: 40px;
+      width: 100%;
+      //padding-right: 40px;
 
       .chart-inputs {
         display: flex;
@@ -234,7 +234,7 @@ main {
     }
 
     &.stats-stream {
-      width: 30%;
+      //width: 30%;
       display: flex;
       flex-direction: column;
 

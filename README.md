@@ -1,4 +1,4 @@
-# Reddit-Dashboard
+## kafka-stream-viz
 
 > Based on https://github.com/heroku/kafka-demo
 

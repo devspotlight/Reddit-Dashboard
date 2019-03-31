@@ -9,29 +9,49 @@ export default class DataTable {
    * @param thresholdInputSlct  Selector for input with threshold value
    * @param maxSize             Max. number of rows for the table
    */
-  constructor(selector, thresholdInputSlct, maxSize, pauseButtonSlct = false) {
-    // Target table adn threshbold <input>
+  constructor(
+    selector,
+    thresholdInputSlct,
+    maxSize,
+    pauseButtonSlct = false,
+    nrmCtSlct,
+    botCtSlct,
+    trlCtSlct
+  ) {
+    // Target table {and threshold <input>}?
     this.tbody = d3.select(selector)
     this._thld = d3.select(thresholdInputSlct)
-    console.log(
-      'DataTable: Selected tbody and threshold',
-      this.tbody,
-      this._thld
-    )
-
+    // console.log(
+    //   // 'DataTable: Selected tbody and threshold',
+    //   'DataTable: Selected tbody',
+    //   this.tbody,
+    //   // this._thld
+    // )
+    //
     // Max number of rows in the table
     this._maxSize = maxSize
 
     // Actual rows of data
     this._rowData = []
 
-    // Paused flag
+    // Paused flag and button
     this.paused = false
     this._pauseButton = false
     if (pauseButtonSlct) {
       this._pauseButton = d3.select(pauseButtonSlct)
-      console.log('DataTable: Selected pause button', this._pauseButton)
+      // console.log('DataTable: Selected pause button', this._pauseButton)
     }
+
+    // Behavior type comment counts
+    this._nrmCt = 0
+    this._botCt = 0
+    this._trlCt = 0
+    this._normal = d3.select(nrmCtSlct)
+    this._bot = d3.select(botCtSlct)
+    this._troll = d3.select(trlCtSlct)
+    this._normal.text(`${this._nrmCt} `)
+    this._bot.text(`${this._botCt} `)
+    this._troll.text(`${this._trlCt} `)
   }
 
   /**
@@ -49,16 +69,8 @@ export default class DataTable {
    */
   togglePause() {
     if (this._pauseButton)
-      this._pauseButton.text(this.paused ? 'Pause' : 'Resume')
+      this._pauseButton.text(this.paused ? 'Pause table' : 'Resume')
     this.paused = !this.paused
-    // if (this.paused) {
-    //   let tr = this.tbody.insert('tr', ':first-child')
-    //   tr.append('td')
-    //     .attr('colspan', 2)
-    //   tr.append('td')
-    //     .attr('colspan', 2)
-    //     .text('...')
-    // }
   }
 
   /**
@@ -77,6 +89,19 @@ export default class DataTable {
     data.forEach((msg) => {
       // if (msg.score < threshold) this._rowData.push(msg)
       this._rowData.push(msg)
+
+      // Update behavior counts
+      switch (msg.behavior) {
+        case 'normal':
+          this._nrmCt++
+          break
+        case 'bot':
+          this._botCt++
+          break
+        case 'troll':
+          this._trlCt++
+          break
+      }
     })
 
     if (this._rowData.length >= this._maxSize)
@@ -105,11 +130,10 @@ export default class DataTable {
         .text((cmt) => cmt.comment_prev)
       tr.append('td').text((cmt) => cmt.behavior)
     }
-    //
-    // console.log(
-    //   'DataTable.update: New row data',
-    //   this._maxSize,
-    //   this._rowData.slice(0)
-    // )
+
+    // Behavior type comment counts
+    this._normal.text(`${this._nrmCt} `)
+    this._bot.text(`${this._botCt} `)
+    this._troll.text(`${this._trlCt} `)
   }
 }
