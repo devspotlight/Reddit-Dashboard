@@ -1,8 +1,10 @@
-## kafka-stream-viz
+## Reddit Dashboard to Moderator Bots and Trolls
 
-> Based on https://github.com/heroku/kafka-demo
+This code is part of a two-part blog series discussing how to moderate bots and trolls on Reddit.
 
-A simple app that streams comments from reddit/r/politics and analyzes the usrs behavior in real-time by using our machine learning API. They are read from a Kafka topic named `reddit-comments`.
+> Based on https://github.com/heroku-examples/analytics-with-kafka-redshift-metabase
+
+A simple app that streams comments from reddit/r/politics and analyzes the usrs behavior in real-time by using our machine learning API found here https://github.com/devspotlight/Reddit-Dashboard-ML. They are read from a Kafka topic named `reddit-comments`.
 
 ### Development Setup
 
