@@ -104,7 +104,7 @@ function predictBotOrTrolls(msgs) {
         // console.debug('res.body', res.body)
         predictions[m] = 2 == res.statusType ? res.body : { prediction: null }
         predictions[m].username = msg.author
-        predictions[m].comment_prev = `${msg.body.slice(0, 100)}...`
+        predictions[m].comment_prev = `${msg.body.slice(0, 200)}...`
         predictions[m].datetime = moment
           .unix(msg.created_utc)
           .format('MMM Do HH:mm:ss z')

@@ -14,7 +14,6 @@ trap cleanup SIGINT SIGTERM
 
 # Set up env vars (dev)
 if [ "${NODE_ENV}" = "development" ]; then
-  echo "exporting default KAFKA env vars"
   export KAFKA_URL="$(heroku config:get KAFKA_URL)"
   export KAFKA_CLIENT_CERT="$(heroku config:get KAFKA_CLIENT_CERT)"
   export KAFKA_CLIENT_CERT_KEY="$(heroku config:get KAFKA_CLIENT_CERT_KEY)"
